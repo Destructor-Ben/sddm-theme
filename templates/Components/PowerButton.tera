@@ -15,8 +15,8 @@ Item {
   implicitWidth: powerButton.width
   Button {
     id: powerButton
-    height: inputHeight
-    width: inputHeight
+    height: config.IconSize
+    width: config.IconSize
     hoverEnabled: true
     icon {
       source: Qt.resolvedUrl("../icons/power.svg")
@@ -42,7 +42,7 @@ Item {
     transitions: Transition {
       PropertyAnimation {
         properties: "color"
-        duration: 300
+        duration: config.TransitionDuration
       }
     }
     onClicked: sddm.powerOff()

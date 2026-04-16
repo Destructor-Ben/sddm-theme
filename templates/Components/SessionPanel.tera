@@ -20,7 +20,6 @@ Item {
     model: sessionModel
     delegate: ItemDelegate {
       id: sessionEntry
-      height: inputHeight
       width: parent.width
       highlighted: sessionList.currentIndex == index
       contentItem: Text {
@@ -53,7 +52,7 @@ Item {
       transitions: Transition {
         PropertyAnimation {
           property: "color"
-          duration: 300
+          duration: config.TransitionDuration
         }
       }
       MouseArea {
@@ -67,8 +66,8 @@ Item {
   }
   Button {
     id: sessionButton
-    height: inputHeight
-    width: inputHeight
+    height: config.IconSize
+    width: config.IconSize
     hoverEnabled: true
     icon {
       source: Qt.resolvedUrl("../icons/settings.svg")
@@ -110,7 +109,7 @@ Item {
     transitions: Transition {
       PropertyAnimation {
         properties: "color"
-        duration: 150
+        duration: config.TransitionDuration
       }
     }
     onClicked: {
@@ -120,10 +119,10 @@ Item {
   }
   Popup {
     id: sessionPopup
-    width: inputWidth + padding * 2
+    width: 300 + padding * 2
     x: (sessionButton.width + sessionList.spacing) * -7.6
     y: -(contentHeight + padding * 2) + sessionButton.height
-    padding: inputHeight / 10
+    padding: config.Padding
     background: Rectangle {
       radius: 5.4
       color: {{surface0.hex}}
@@ -131,7 +130,7 @@ Item {
     contentItem: ListView {
       id: sessionList
       implicitHeight: contentHeight
-      spacing: 8
+      spacing: config.Spacing
       model: sessionWrapper
       currentIndex: sessionModel.lastIndex
       clip: true
@@ -142,14 +141,7 @@ Item {
           property: "opacity"
           from: 0
           to: 1
-          duration: 400
-          easing.type: Easing.OutExpo
-        }
-        NumberAnimation {
-          property: "x"
-          from: sessionPopup.x + (inputWidth * 0.1)
-          to: sessionPopup.x
-          duration: 500
+          duration: config.TransitionDuration
           easing.type: Easing.OutExpo
         }
       }
@@ -159,7 +151,7 @@ Item {
         property: "opacity"
         from: 1
         to: 0
-        duration: 300
+        duration: config.TransitionDuration
         easing.type: Easing.OutExpo
       }
     }

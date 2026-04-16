@@ -30,7 +30,7 @@ Item {
     height: parent.height
     width: parent.width
     fillMode: Image.PreserveAspectCrop
-    visible: config.CustomBackground == "true" ? true : false
+    visible: config.CustomBackground == "true"
     z: 1
     source: config.Background
     asynchronous: false
@@ -43,15 +43,43 @@ Item {
     z: 3
     anchors {
       fill: parent
-      margins: 50
+      margins: config.Padding
     }
     Clock {
       id: time
-      visible: config.ClockEnabled == "true" ? true : false
+      visible: config.ClockEnabled == "true"
     }
     LoginPanel {
       id: loginPanel
       anchors.fill: parent
+    }
+    Column {
+      spacing: config.Spacing
+      anchors {
+        bottom: parent.bottom
+        left: parent.left
+      }
+      PowerButton {
+        id: powerButton
+      }
+      RebootButton {
+        id: rebootButton
+      }
+      SleepButton {
+        id: sleepButton
+      }
+      z: 5
+    }
+    Column {
+      spacing: config.Spacing
+      anchors {
+        bottom: parent.bottom
+        right: parent.right
+      }
+      SessionPanel {
+        id: sessionPanel
+      }
+      z: 5
     }
   }
 }

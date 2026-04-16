@@ -15,8 +15,8 @@ Item {
   implicitWidth: rebootButton.width
   Button {
     id: rebootButton
-    height: inputHeight
-    width: inputHeight
+    height: config.IconSize
+    width: config.IconSize
     hoverEnabled: true
     icon {
       source: Qt.resolvedUrl("../icons/reboot.svg")
@@ -42,7 +42,7 @@ Item {
     transitions: Transition {
       PropertyAnimation {
         properties: "color"
-        duration: 300
+        duration: config.TransitionDuration
       }
     }
     onClicked: sddm.reboot()
