@@ -124,7 +124,8 @@ Item {
             when: loginButton.down
             PropertyChanges {
               target: buttonBackground
-              color: {{pink.hex}}
+              # TODO: proper color
+              color: {{flavor.colors[accent].hex}}
             }
             PropertyChanges {
               target: buttonText
@@ -135,7 +136,8 @@ Item {
             when: loginButton.hovered
             PropertyChanges {
               target: buttonBackground
-              color: {{pink.hex}}
+              # TODO: TODO: proper color
+              color: {{flavor.colors[accent].hex}}
             }
             PropertyChanges {
               target: buttonText
