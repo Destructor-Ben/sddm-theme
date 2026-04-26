@@ -7,16 +7,16 @@ whiskers:
   filename: "./themes/catppuccin-{{flavor.identifier}}-{{accent}}/metadata.desktop"
 ---
 [SddmGreeterTheme]
-Name=Catppuccin {{flavor.name}} {{accent}}
-Description=Soothing pastel theme for SDDM
+Name=Catppuccin Rounded ({{flavor.name}} {{accent}})
+Description=Soothing & soft-edged pastel theme for SDDM
 Type=sddm-theme
-Version=2.1
-Website=https://github.com/catppuccin/sddm
+Version=0.1
+Website=https://github.com/destructor-ben/sddm-theme
 Screenshot=preview.png
 MainScript=Main.qml
 ConfigFile=theme.conf
 TranslationsDirectory=translations
-Theme-Id=Catppuccin
+Theme-Id=Catppuccin-Rounded
 Theme-API=2.0
 License=MIT
 QtVersion=6

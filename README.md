@@ -2,9 +2,14 @@
 - redo readme
 - redo justfile
 - redo gh ci stuff
-- figure out how version will be specified -> package needs version but i'd rather do it in a git tag
+- figure out how version will be specified
+  - package needs version but i'd rather do it in a git tag
+  - also package in the metadata file
 - redo folder structure
-  - delete uneeded stuff
+  - regenerate previews
+  - get back the default wallpaper
+  - redo all the icons and make them themed
+  - rename the theme from catppuccin to catppuccin-rounded
   - make only the config files processsed by the preprocesser, and make changing the theme in the preprocessor just change the config file
 
 <h3 align="center">
