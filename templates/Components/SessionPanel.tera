@@ -70,7 +70,7 @@ Item {
     width: config.IconSize
     hoverEnabled: true
     icon {
-      source: Qt.resolvedUrl("../icons/settings.svg")
+      source: Qt.resolvedUrl("../assets/settings.svg")
       height: height
       width: width
       color: {{text.hex}}

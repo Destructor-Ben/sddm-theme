@@ -1,0 +1,12 @@
+---
+whiskers:
+  version: "^2.5.1"
+  matrix:
+    - flavor
+    - accent
+  hex_format: "#{{r}}{{g}}{{b}}{{z}}"
+  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/assets/sleep.svg"
+---
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24" version="1.1">
+ <path style="fill:{{base.hex}}" d="m 12,5 a 7,7 0 0 0 -7,7 7,7 0 0 0 7,7 7,7 0 0 0 7,-7 7,7 0 0 0 -7,-7 z m 0,2 a 5,5 0 0 1 5,5 5,5 0 0 1 -5,5 5,5 0 0 1 -5,-5 5,5 0 0 1 5,-5 z m -1.990234,4 a 0.99537445,1.0001 0 1 0 0,2 h 3.980469 a 0.99537445,1.0001 0 1 0 0,-2 z"/>
+</svg>

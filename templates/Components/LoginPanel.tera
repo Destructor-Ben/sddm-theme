@@ -64,6 +64,7 @@ Item {
           height: parent.width
           width: parent.width
         }
+        // TODO: what is this?
         Image {
           source: Qt.resolvedUrl(config.LoginBackground == "true" ? "../assets/maskDark.svg" : "../assets/mask.svg")
           height: parent.width

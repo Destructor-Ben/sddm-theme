@@ -19,7 +19,7 @@ Item {
     width: config.IconSize
     hoverEnabled: true
     icon {
-      source: Qt.resolvedUrl("../icons/sleep.svg")
+      source: Qt.resolvedUrl("../assets/sleep.svg")
       height: height
       width: width
       color: {{crust.hex}}
