@@ -9,15 +9,15 @@ whiskers:
 ---
 [General]
 
-### Font ###
+### General ###
 Font="Noto Sans"
 FontSize=12
-
-### Sizing ###
 # Spacing between power buttons, input fields & login button, and sessions
 Spacing=10
 # Padding around the edge of the screen
 Padding=20
+# Measured in ms
+TransitionDuration=150
 
 ### Background ###
 CustomBackground="false"
@@ -33,12 +33,16 @@ LoginPanelBorderColor={{surface0.hex}}
 UserIcon="true"
 UserIconSize=192
 UserIconBorderColor={{surface1.hex}}
-# TODO: not working
-DefaultUserIcon="assets/defaultIcon.png"
+# Set this to a file path to an image to set a custom default user icon
+DefaultUserIcon=""
 
 # TODO: options for the buttons and input fields
 
 # TODO: shadow options
+
+# Uncomment this option to show the last letter of the password
+# for the number of milliseconds specified
+# PasswordShowLastLetter=1000
 
 ### Power Buttons & Session Selector Button ###
 IconSize=48
@@ -48,6 +52,7 @@ PowerAndSessionButtonBorderRadius=20
 PowerButtonColor={{red.hex}}
 PowerButtonIconColor={{base.hex}}
 # TODO: options for the icons
+# TODO: orientation option
 
 ### Session Selector ###
 # TODO: option to show the Selector
@@ -82,16 +87,10 @@ ClockShadow="true"
 # TODO: more shadow options
 
 ### Shadows ###
+# TODO: remove this section
 ShadowColor="#aa000000"
 ShadowSamples=17
 LargeShadowRadius=8
 LargeShadowOffset=2
 SmallShadowRadius=4
 SmallShadowOffset=2
-
-### Miscellaneous ###
-TransitionDuration=150
-
-# Uncomment this option to show the last letter of the password
-# for the number of milliseconds specified
-# PasswordShowLastLetter=1000

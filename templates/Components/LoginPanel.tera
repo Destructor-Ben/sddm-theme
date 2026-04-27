@@ -54,7 +54,7 @@ Item {
         height: config.UserIconSize
         color: "transparent"
         Image {
-          source: config.DefaultUserIcon
+          source: config.DefaultUserIcon ? config.DefaultUserIcon : Qt.resolvedUrl("../assets/defaultIcon.png")
           height: parent.width
           width: parent.width
         }
