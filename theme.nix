@@ -1,4 +1,4 @@
-{ pkgs, lib, flavor ? "mocha", accent ? "mauve" }:
+{ pkgs, lib, allThemes ? false, flavor ? "mocha", accent ? "mauve" }:
 pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "catppuccin-sddm-rounded";
   version = "0.1";
@@ -34,9 +34,12 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     runHook preInstall
 
     mkdir -p "$out/share/sddm/themes/"
-    cp -r themes/catppuccin-${flavor}-${accent} "$out/share/sddm/themes/catppuccin-${flavor}-${accent}"
-
-    configFile=$out/share/sddm/themes/catppuccin-${flavor}-${accent}/theme.conf
+    ${
+      if allThemes then
+      "cp -r themes/ \"$out/share/sddm/\""
+      else
+      "cp -r themes/catppuccin-${flavor}-${accent} \"$out/share/sddm/themes/catppuccin-rounded\""
+    }
 
     runHook postInstall
   '';
@@ -52,6 +55,10 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
 /*
 
   TODO: allow configuring the config through nix
+
+
+    configFile=$out/share/sddm/themes/catppuccin-${flavor}-${accent}/theme.conf
+    (above goes in install phase)
 
     substituteInPlace $configFile \
       --replace-fail 'Font="Noto Sans"' 'Font="${font}"' \

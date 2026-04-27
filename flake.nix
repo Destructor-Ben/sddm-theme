@@ -12,7 +12,6 @@
         pkgs = import nixpkgs { inherit system; };
         themePkg = pkgs.callPackage ./theme.nix { };
 
-        # TODO: allow testing other themes
         testScript = pkgs.writeShellScriptBin "test-theme" ''
           export QML2_IMPORT_PATH="${with pkgs.kdePackages; pkgs.lib.makeSearchPath "lib/qt-6/qml" [
             qt5compat
@@ -20,7 +19,7 @@
             sddm
           ]}"
 
-          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg}/share/sddm/themes/catppuccin-mocha-mauve
+          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override { allThemes = true; }}/share/sddm/themes/catppuccin-$1-$2
         '';
       in {
         apps.default = {

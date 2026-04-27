@@ -106,6 +106,9 @@ environment.systemPackages = [(
   pkgs.catppuccin-sddm.override {
     flavor = "mocha";
     accent = "mauve";
+    # allThemes = true; # Instead of specifying a single theme, you can install all themes
+    # The theme name used when installing just one theme is "catppuccin-rounded", whilst with all of them, it is "catppuccin-rounded-{flavor}-{accent}"
+    # TODO: add config options here once ready for real
     font  = "Noto Sans";
     fontSize = "9";
     background = "${./wallpaper.png}";
@@ -116,6 +119,7 @@ environment.systemPackages = [(
 
 Then set it as the theme in the sddm configuration, change the suffix to the flavor and accent you set in the package override:
 
+TODO: show how it is supposed to be done
 ```nix
 displayManager.sddm = {
   enable = true;
