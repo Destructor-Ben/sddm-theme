@@ -26,13 +26,12 @@ Item {
       verticalCenter: parent.verticalCenter
       horizontalCenter: parent.horizontalCenter
     }
-    radius: config.BorderRadius
-    visible: config.LoginBackground == "true"
-    color: {{mantle.hex}}
-    width: loginContents.width + config.Padding * 2
-    height: loginContents.height + config.Padding * 2
-    border.width: config.BorderWidth
-    border.color: {{surface0.hex}}
+    radius: config.LoginPanelBorderRadius
+    color: config.LoginPanelColor
+    width: loginContents.width + config.LoginPanelPadding * 2
+    height: loginContents.height + config.LoginPanelPadding * 2
+    border.width: config.LoginPanelBorderWidth
+    border.color: config.LoginPanelBorderColor
 
     Column {
       id: loginContents
@@ -41,10 +40,11 @@ Item {
       anchors {
         verticalCenter: parent.verticalCenter
         horizontalCenter: parent.horizontalCenter
-        margins: config.Padding
+        margins: config.LoginPanelPadding
       }
       // fake padding
       Item {
+        visible: config.UserIcon == "true"
         width: 1
         height: config.Spacing
       }
@@ -54,7 +54,7 @@ Item {
         height: config.UserIconSize
         color: "transparent"
         Image {
-          source: Qt.resolvedUrl("../assets/defaultIcon.png")
+          source: config.DefaultUserIcon
           height: parent.width
           width: parent.width
         }
@@ -64,16 +64,25 @@ Item {
           height: parent.width
           width: parent.width
         }
-        // TODO: what is this?
         Image {
-          source: Qt.resolvedUrl(config.LoginBackground == "true" ? "../assets/maskDark.svg" : "../assets/mask.svg")
+          source: Qt.resolvedUrl("../assets/mask.svg")
           height: parent.width
           width: parent.width
+
+          layer.enabled: true
+          layer.effect: ColorOverlay {
+              color: config.LoginPanelColor
+          }
         }
         Image {
           source: Qt.resolvedUrl("../assets/ring.svg")
           height: parent.width
           width: parent.width
+
+          layer.enabled: true
+          layer.effect: ColorOverlay {
+              color: config.UserIconBorderColor
+          }
         }
         anchors {
           horizontalCenter: parent.horizontalCenter
@@ -81,6 +90,7 @@ Item {
       }
       // fake padding
       Item {
+        visible: config.UserIcon == "true"
         width: 1
         height: config.Spacing
       }
@@ -180,6 +190,7 @@ Item {
   Connections {
     target: sddm
 
+    // TODO: shake the login panel if login fails
     function onLoginFailed() {
       passwordField.text = ""
       passwordField.focus = true

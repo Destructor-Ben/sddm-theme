@@ -5,6 +5,6 @@
   config = {
     Font = "JetBrainsMono Nerd Font Propo";
 
-    ClockDont = "Red Seven";
+    ClockFont = "Red Seven";
   };
 }

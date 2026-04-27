@@ -14,24 +14,31 @@ Font="Noto Sans"
 FontSize=12
 
 ### Sizing ###
-# TODO: decouple a bunch of these
 # Spacing between power buttons, input fields & login button, and sessions
 Spacing=10
-# Padding around the edge of the screen and in the login panel
+# Padding around the edge of the screen
 Padding=20
-BorderRadius=20
-BorderWidth=4
 
 ### Background ###
 CustomBackground="false"
 Background="backgrounds/julia.png"
 
 ### Login Panel ###
-# TODO: more options
-# TODO: remove this option
-LoginBackground="true"
+LoginPanelColor={{mantle.hex}}
+LoginPanelPadding=20
+LoginPanelBorderRadius=20
+LoginPanelBorderWidth=4
+LoginPanelBorderColor={{surface0.hex}}
+
 UserIcon="true"
-UserIconSize=196
+UserIconSize=192
+UserIconBorderColor={{surface1.hex}}
+# TODO: not working
+DefaultUserIcon="assets/defaultIcon.png"
+
+# TODO: options for the buttons and input fields
+
+# TODO: shadow options
 
 ### Power Buttons & Session Selector Button ###
 IconSize=48
@@ -60,12 +67,13 @@ ClockBottomMargin=0
 ClockLeftMargin=0
 ClockRightMargin=0
 # "top", "center", or "bottom"
-ClockVerticalAnchor="bottom"
+ClockVerticalAnchor="top"
 # "left", "center", or "right"
-ClockHorizontalAnchor="right"
+ClockHorizontalAnchor="center"
 # Gap between date and time
 ClockGap=-20
 # Whether to ignore ClockHorizontalAnchor and center text regardless
+# TODO: implement
 ClockAlwaysCenterText="false"
 # Whether the date and time text should have their places swapped
 ClockSwapDateAndTime="false"
