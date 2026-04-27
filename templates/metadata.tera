@@ -4,7 +4,7 @@ whiskers:
   matrix:
     - flavor
     - accent
-  filename: "./themes/catppuccin-{{flavor.identifier}}-{{accent}}/metadata.desktop"
+  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/metadata.desktop"
 ---
 [SddmGreeterTheme]
 Name=Catppuccin Rounded ({{flavor.name}} {{accent}})

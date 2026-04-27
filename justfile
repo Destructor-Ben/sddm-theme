@@ -11,13 +11,13 @@ build: clean
   done
   for flavor in $(whiskers --list-flavors -o plain); do
     for accent in $(whiskers --list-accents -o plain); do
-      cp -r ./src/* ./themes/catppuccin-$flavor-$accent/
+      cp -r ./src/* ./themes/catppuccin-rounded-$flavor-$accent/
       if [ $flavor == "latte" ]; then
-        cp ./assets/defaultIconLight.png ./themes/catppuccin-$flavor-$accent/assets/defaultIcon.png
+        cp ./assets/defaultIconLight.png ./themes/catppuccin-rounded-$flavor-$accent/assets/defaultIcon.png
       else
-        cp ./assets/defaultIcon.png ./themes/catppuccin-$flavor-$accent/assets/defaultIcon.png
+        cp ./assets/defaultIcon.png ./themes/catppuccin-rounded-$flavor-$accent/assets/defaultIcon.png
       fi
-      cp ./assets/$flavor.png ./themes/catppuccin-$flavor-$accent/preview.png
+      cp ./assets/$flavor.png ./themes/catppuccin-rounded-$flavor-$accent/preview.png
     done
   done
 

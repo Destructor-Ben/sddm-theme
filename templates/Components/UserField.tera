@@ -5,7 +5,7 @@ whiskers:
     - flavor
     - accent
   hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-{{flavor.identifier}}-{{accent}}/Components/UserField.qml"
+  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Components/UserField.qml"
 ---
 import QtQuick 2.15
 import QtQuick.Controls 2.15

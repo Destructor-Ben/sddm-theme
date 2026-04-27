@@ -19,7 +19,9 @@
             sddm
           ]}"
 
-          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override { allThemes = true; }}/share/sddm/themes/catppuccin-$1-$2
+          FLAVOR=''${1:-"mocha"}
+          ACCENT=''${2:-"mauve"}
+          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override { allThemes = true; }}/share/sddm/themes/catppuccin-rounded-$FLAVOR-$ACCENT
         '';
       in {
         apps.default = {

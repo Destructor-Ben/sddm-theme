@@ -5,7 +5,7 @@ whiskers:
     - flavor
     - accent
   hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-{{flavor.identifier}}-{{accent}}/Main.qml"
+  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Main.qml"
 ---
 import QtQuick 2.15
 import QtQuick.Window 2.15

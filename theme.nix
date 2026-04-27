@@ -38,7 +38,7 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
       if allThemes then
       "cp -r themes/ \"$out/share/sddm/\""
       else
-      "cp -r themes/catppuccin-${flavor}-${accent} \"$out/share/sddm/themes/catppuccin-rounded\""
+      "cp -r themes/catppuccin-rounded-${flavor}-${accent} \"$out/share/sddm/themes/catppuccin-rounded\""
     }
 
     runHook postInstall
