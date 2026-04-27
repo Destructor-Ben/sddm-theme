@@ -65,7 +65,6 @@ ClockVerticalAnchor="bottom"
 ClockHorizontalAnchor="right"
 # Gap between date and time
 ClockGap=-20
-# TODO: impl 2 below
 # Whether to ignore ClockHorizontalAnchor and center text regardless
 ClockAlwaysCenterText="false"
 # Whether the date and time text should have their places swapped

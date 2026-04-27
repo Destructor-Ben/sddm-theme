@@ -44,9 +44,9 @@ Item {
     }
 
     color: time.color
-    text : Qt.formatDate(time.dateTime, config.ClockDateFormat)
+    text : (config.ClockSwapDateAndTime == "true") ? Qt.formatTime(time.dateTime, config.ClockTimeFormat) : Qt.formatDate(time.dateTime, config.ClockDateFormat)
     font.family: config.ClockFont
-    font.pointSize: config.ClockDateSize
+    font.pointSize: (config.ClockSwapDateAndTime == "true") ? config.ClockTimeSize : config.ClockDateSize
   }
 
   Text {
@@ -64,9 +64,9 @@ Item {
     }
 
     color: time.color
-    text : Qt.formatTime(time.dateTime, config.ClockTimeFormat)
+    text : (config.ClockSwapDateAndTime == "true") ? Qt.formatDate(time.dateTime, config.ClockDateFormat) : Qt.formatTime(time.dateTime, config.ClockTimeFormat)
     font.family: config.ClockFont
-    font.pointSize: config.ClockTimeSize
+    font.pointSize: (config.ClockSwapDateAndTime == "true") ? config.ClockDateSize : config.ClockTimeSize
   }
 
   DropShadow {
