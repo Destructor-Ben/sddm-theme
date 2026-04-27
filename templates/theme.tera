@@ -1,0 +1,90 @@
+---
+whiskers:
+  version: "^2.5.1"
+  matrix:
+    - flavor
+    - accent
+  hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
+  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/theme.conf"
+---
+[General]
+
+### Font ###
+Font="Noto Sans"
+FontSize=12
+
+### Sizing ###
+# TODO: decouple a bunch of these
+# Spacing between power buttons, input fields & login button, and sessions
+Spacing=10
+# Padding around the edge of the screen and in the login panel
+Padding=20
+BorderRadius=20
+BorderWidth=4
+
+### Background ###
+CustomBackground="false"
+Background="backgrounds/julia.png"
+
+### Login Panel ###
+# TODO: more options
+# TODO: remove this option
+LoginBackground="true"
+UserIcon="true"
+UserIconSize=196
+
+### Power Buttons & Session Selector Button ###
+IconSize=48
+# If true, ignores PowerAndSessionButtonBorderRadius
+CircularPowerAndSessionButtons=true
+PowerAndSessionButtonBorderRadius=20
+PowerButtonColor={{red.hex}}
+PowerButtonIconColor={{base.hex}}
+# TODO: options for the icons
+
+### Session Selector ###
+# TODO: option to show the Selector
+# TODO: should bother?
+
+### Clock ###
+ClockEnabled="true"
+ClockFont="Noto Sans"
+ClockColor={{text.hex}}
+ClockDateSize=24
+ClockTimeSize=72
+ClockDateFormat="dddd, MMMM d"
+ClockTimeFormat="h:mm AP"
+
+ClockTopMargin=50
+ClockBottomMargin=0
+ClockLeftMargin=0
+ClockRightMargin=0
+# "top", "center", or "bottom"
+ClockVerticalAnchor="bottom"
+# "left", "center", or "right"
+ClockHorizontalAnchor="right"
+# Gap between date and time
+ClockGap=-20
+# TODO: impl 2 below
+# Whether to ignore ClockHorizontalAnchor and center text regardless
+ClockAlwaysCenterText="false"
+# Whether the date and time text should have their places swapped
+ClockSwapDateAndTime="false"
+
+ClockShadow="true"
+# TODO: more shadow options
+
+### Shadows ###
+ShadowColor="#aa000000"
+ShadowSamples=17
+LargeShadowRadius=8
+LargeShadowOffset=2
+SmallShadowRadius=4
+SmallShadowOffset=2
+
+### Miscellaneous ###
+TransitionDuration=150
+
+# Uncomment this option to show the last letter of the password
+# for the number of milliseconds specified
+# PasswordShowLastLetter=1000

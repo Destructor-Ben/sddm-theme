@@ -30,5 +30,6 @@
         };
 
         packages.default = themePkg;
+        packages.personal = themePkg.override (import ./personal-theme.nix);
       });
 }

@@ -22,12 +22,12 @@ Item {
       source: Qt.resolvedUrl("../assets/reboot.svg")
       height: height
       width: width
-      color: {{crust.hex}}
+      color: config.PowerButtonIconColor
     }
     background: Rectangle {
       id: rebootButtonBackground
-      radius: 3
-      color: {{red.hex}}
+      radius: config.CircularPowerAndSessionButtons ? height / 2 : config.PowerAndSessionButtonBorderRadius
+      color: config.PowerButtonColor
     }
     states: [
       State {

@@ -22,12 +22,12 @@ Item {
       source: Qt.resolvedUrl("../assets/power.svg")
       height: height
       width: width
-      color: {{crust.hex}}
+      color: config.PowerButtonIconColor
     }
     background: Rectangle {
       id: powerButtonBackground
-      radius: 3
-      color: {{red.hex}}
+      radius: config.CircularPowerAndSessionButtons ? height / 2 : config.PowerAndSessionButtonBorderRadius
+      color: config.PowerButtonColor
     }
     states: [
       State {

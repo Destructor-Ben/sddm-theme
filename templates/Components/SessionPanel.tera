@@ -77,8 +77,8 @@ Item {
     }
     background: Rectangle {
       id: sessionButtonBackground
+      radius: config.CircularPowerAndSessionButtons ? height / 2 : config.PowerAndSessionButtonBorderRadius
       color: {{surface0.hex}}
-      radius: 3
     }
     states: [
       State {
@@ -122,7 +122,7 @@ Item {
     width: 300 + padding * 2
     x: (sessionButton.width + sessionList.spacing) * -7.6
     y: -(contentHeight + padding * 2) + sessionButton.height
-    padding: config.Padding
+    padding: config.Spacing
     background: Rectangle {
       radius: 5.4
       color: {{surface0.hex}}

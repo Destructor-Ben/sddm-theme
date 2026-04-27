@@ -22,12 +22,12 @@ Item {
       source: Qt.resolvedUrl("../assets/sleep.svg")
       height: height
       width: width
-      color: {{crust.hex}}
+      color: config.PowerButtonIconColor
     }
     background: Rectangle {
       id: sleepButtonBg
-      color: {{red.hex}}
-      radius: 3
+      radius: config.CircularPowerAndSessionButtons ? height / 2 : config.PowerAndSessionButtonBorderRadius
+      color: config.PowerButtonColor
     }
     states: [
       State {
