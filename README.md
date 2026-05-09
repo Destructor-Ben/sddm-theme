@@ -1,6 +1,7 @@
 # TODO:
 - redo readme
 - redo gh ci stuff
+- add animations for startup + login (that apply to everything) since it's easier to do them like that rather than in the wl compositor
 - figure out how version will be specified
   - package needs version but i'd rather do it in a git tag
   - also package in the metadata file

@@ -38,6 +38,8 @@ DefaultUserIcon=""
 
 # TODO: options for the buttons and input fields
 
+# TODO: options for the login panel animation
+
 # TODO: shadow options
 
 # Uncomment this option to show the last letter of the password
@@ -45,18 +47,28 @@ DefaultUserIcon=""
 # PasswordShowLastLetter=1000
 
 ### Power Buttons & Session Selector Button ###
+# TODO: split into Power and Session
 IconSize=48
-# If true, ignores PowerAndSessionButtonBorderRadius
-CircularPowerAndSessionButtons=true
-PowerAndSessionButtonBorderRadius=20
 PowerButtonColor={{red.hex}}
 PowerButtonIconColor={{base.hex}}
+# TODO: border colors + width
+# TODO: all of the above for the session button
+
+# TODO: split into Power and Session
+# If true, ignores PowerAndSessionButtonBorderRadius
+CircularPowerAndSessionButtons=true
+# TODO: comment saying set to half of XXIconSize to make it a circle
+PowerAndSessionButtonBorderRadius=20
 # TODO: options for the icons
 # TODO: orientation option
 
+# TODO options for power button & session selector locations
+
+# TODO shadow options
+
 ### Session Selector ###
 # TODO: option to show the Selector
-# TODO: should bother?
+# TODO: more settings for color + border + size
 
 ### Clock ###
 ClockEnabled="true"
@@ -87,7 +99,7 @@ ClockShadow="true"
 # TODO: more shadow options
 
 ### Shadows ###
-# TODO: remove this section
+# TODO: remove this section + move to others
 ShadowColor="#aa000000"
 ShadowSamples=17
 LargeShadowRadius=8

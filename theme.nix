@@ -13,6 +13,7 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   ];
 
   propagatedBuildInputs = with pkgs; [
+    kdePackages.qtbase
     kdePackages.qtsvg
     kdePackages.qt5compat
   ];
