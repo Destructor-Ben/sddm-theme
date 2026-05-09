@@ -23,13 +23,29 @@
           ACCENT=''${2:-"mauve"}
           ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override { allThemes = true; }}/share/sddm/themes/catppuccin-rounded-$FLAVOR-$ACCENT
         '';
+
+        testPersonalScript = pkgs.writeShellScriptBin "test-personal-theme" ''
+          export QML2_IMPORT_PATH="${with pkgs.kdePackages; pkgs.lib.makeSearchPath "lib/qt-6/qml" [
+            qt5compat
+            qtsvg
+            sddm
+          ]}"
+
+          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override (import ./personal-theme.nix)}/share/sddm/themes/catppuccin-rounded
+        '';
       in {
         apps.default = {
           type = "app";
           program = "${testScript}/bin/test-theme";
         };
 
+        apps.test-personal = {
+          type = "app";
+          program = "${testPersonalScript}/bin/test-personal-theme";
+        };
+
         packages.default = themePkg;
         packages.personal = themePkg.override (import ./personal-theme.nix);
-      });
+      }
+    );
 }
