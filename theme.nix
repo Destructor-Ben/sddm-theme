@@ -1,4 +1,4 @@
-{ pkgs, lib, allThemes ? false, flavor ? "mocha", accent ? "mauve" }:
+{ pkgs, lib, allThemes ? false, flavor ? "mocha", accent ? "mauve", config ? { } }:
 pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "catppuccin-sddm-rounded";
   version = "0.1";
