@@ -76,7 +76,7 @@ ClockFont="Noto Sans"
 ClockColor={{text.hex}}
 ClockDateSize=24
 ClockTimeSize=72
-ClockDateFormat="dddd, MMMM d"
+ClockDateFormat="dddd, d MMMM"
 ClockTimeFormat="h:mm AP"
 
 ClockTopMargin=50
@@ -88,6 +88,7 @@ ClockVerticalAnchor="top"
 # "left", "center", or "right"
 ClockHorizontalAnchor="center"
 # Gap between date and time
+# TODO: why negative?
 ClockGap=-20
 # Whether to ignore ClockHorizontalAnchor and center text regardless
 # TODO: implement
