@@ -12,8 +12,10 @@ Item {
     delegate: ItemDelegate {
       id: sessionEntry
       width: parent.width
+      height: config.SessionSelectorItemHeight
       highlighted: sessionList.currentIndex == index
       contentItem: Text {
+        id: sessionEntryText
         renderType: Text.NativeRendering
         font {
           family: config.Font
@@ -22,21 +24,37 @@ Item {
         }
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        color: {{text.hex}}
+        color: config.SessionSelectorItemTextColor
         text: name
       }
       background: Rectangle {
         id: sessionEntryBackground
-        color: {{surface1.hex}}
-        radius: 3
+        color: config.SessionSelectorItemColor
+        radius: height / 2
       }
       states: [
+        State {
+          name: "selected"
+          when: sessionList.currentIndex == index
+          PropertyChanges {
+            target: sessionEntryBackground
+            color: config.SessionSelectorItemColorSelected
+          }
+          PropertyChanges {
+            target: sessionEntryText
+            color: config.SessionSelectorItemTextColorSelected
+          }
+        },
         State {
           name: "hovered"
           when: sessionEntry.hovered
           PropertyChanges {
             target: sessionEntryBackground
-            color: {{surface2.hex}}
+            color: config.SessionSelectorItemColorHover
+          }
+          PropertyChanges {
+            target: sessionEntryText
+            color: config.SessionSelectorItemTextColorHover
           }
         }
       ]
@@ -57,19 +75,19 @@ Item {
   }
   Button {
     id: sessionButton
-    height: config.IconSize
-    width: config.IconSize
+    height: config.SessionSelectorIconSize
+    width: config.SessionSelectorIconSize
     hoverEnabled: true
     icon {
-      source: Qt.resolvedUrl("../assets/settings.svg")
+      source: Qt.resolvedUrl(config.UseCustomSessionSelectorIcon == "true" ? config.SessionSelectorIcon : "../assets/settings.svg")
       height: height
       width: width
-      color: {{text.hex}}
+      color: config.SessionSelectorIconColor
     }
     background: Rectangle {
       id: sessionButtonBackground
-      radius: config.CircularPowerAndSessionButtons ? height / 2 : config.PowerAndSessionButtonBorderRadius
-      color: {{surface0.hex}}
+      radius: config.CircularSessionSelector == "true" ? sessionButton.height / 2 : config.SessionSelectorBorderRadius
+      color: config.SessionSelectorColor
     }
     states: [
       State {
@@ -77,7 +95,11 @@ Item {
         when: sessionButton.down
         PropertyChanges {
           target: sessionButtonBackground
-          color: {{surface1.hex}}
+          color: config.SessionSelectorPressedColor
+        }
+        PropertyChanges {
+          target: sessionButton
+          icon.color: config.SessionSelectorPressedIconColor
         }
       },
       State {
@@ -85,15 +107,11 @@ Item {
         when: sessionButton.hovered
         PropertyChanges {
           target: sessionButtonBackground
-          color: {{surface2.hex}}
+          color: config.SessionSelectorHoverColor
         }
-      },
-      State {
-        name: "selection"
-        when: sessionPopup.visible
         PropertyChanges {
-          target: sessionButtonBackground
-          color: {{surface2.hex}}
+          target: sessionButton
+          icon.color: config.SessionSelectorHoverIconColor
         }
       }
     ]
@@ -110,13 +128,14 @@ Item {
   }
   Popup {
     id: sessionPopup
-    width: 300 + padding * 2
-    x: (sessionButton.width + sessionList.spacing) * -7.6
-    y: -(contentHeight + padding * 2) + sessionButton.height
+    x: -width + sessionButton.width
+    y: -height - padding
     padding: config.Spacing
+    // The * 1 is crucial, no idea why, but without it, the width is * 10
+    width: config.SessionSelectorItemWidth * 1 + padding * 2
     background: Rectangle {
-      radius: 5.4
-      color: {{surface0.hex}}
+      radius: config.SessionSelectorPopupRadius
+      color: config.SessionSelectorPopupColor
     }
     contentItem: ListView {
       id: sessionList
@@ -132,7 +151,7 @@ Item {
           property: "opacity"
           from: 0
           to: 1
-          duration: config.TransitionDuration
+          duration: config.TransitionDuration * 2
           easing.type: Easing.OutExpo
         }
       }
@@ -142,7 +161,7 @@ Item {
         property: "opacity"
         from: 1
         to: 0
-        duration: config.TransitionDuration
+        duration: config.TransitionDuration * 2
         easing.type: Easing.OutExpo
       }
     }

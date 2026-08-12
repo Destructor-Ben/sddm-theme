@@ -26,7 +26,7 @@ Item {
 
     background: Rectangle {
       id: powerButtonBackground
-      radius: config.CircularPowerButtons ? powerButton.height / 2 : config.PowerButtonBorderRadius
+      radius: config.CircularPowerButtons == "true" ? powerButton.height / 2 : config.PowerButtonBorderRadius
       color: config.PowerButtonColor
     }
     states: [

@@ -8,9 +8,7 @@
 - figure out how version will be specified
   - package needs version but i'd rather do it in a git tag
   - also package in the metadata file
-- redo folder structure
-  - get back the default wallpaper
-- add cursors to the clickable elements
+- get back the default wallpaper
 
 -->
 
@@ -48,6 +46,10 @@
 <details>
 <summary>🌿 Mocha</summary>
 <img src="assets/mocha.webp"/>
+</details>
+<details>
+<summary>My Personal Theme</summary>
+<img src="assets/personal.webp"/>
 </details>
 
 ## Usage

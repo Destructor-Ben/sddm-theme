@@ -28,9 +28,12 @@ BackgroundColor={{base.hex}}
 ### Login Panel ###
 LoginPanelColor={{mantle.hex}}
 LoginPanelPadding=20
-LoginPanelBorderRadius=20
+// 38 = LoginPanelPadding + LoginPanelFieldHeight / 2
+LoginPanelBorderRadius=38
 LoginPanelBorderWidth=4
 LoginPanelBorderColor={{surface0.hex}}
+LoginPanelFieldHeight=36
+LoginPanelFieldWidth=300
 
 UserIcon=true
 UserIconSize=192
@@ -63,9 +66,6 @@ LoginPanelShadowRadius=8
 LoginPanelShadowXOffset=2
 LoginPanelShadowYOffset=2
 
-LoginPanelFieldHeight=35
-LoginPanelFieldWidth=300
-
 EnableLoginFailedAnimation=true
 LoginFailedMessage="Incorrect Password"
 LoginFailedTextColor={{red.hex}}
@@ -89,7 +89,7 @@ PowerButtonHoverIconColor={{base.hex}}
 
 # If true, ignores PowerButtonBorderRadius
 CircularPowerButtons=true
-PowerButtonBorderRadius=20
+PowerButtonBorderRadius=10
 
 UseCustomPowerOffIcon=false
 UseCustomRebootIcon=false
@@ -101,8 +101,34 @@ SleepIcon=""
 
 ### Session Selector ###
 SessionSelectorIconSize=48
-# TODO: option to show the Selector
-# TODO: more settings for color + border + size
+SessionSelectorColor={{surface0.hex}}
+SessionSelectorHoverColor={{surface1.hex}}
+SessionSelectorPressedColor={{surface1.hex}}
+SessionSelectorIconColor={{text.hex}}
+SessionSelectorHoverIconColor={{text.hex}}
+SessionSelectorPressedIconColor={{text.hex}}
+
+# If true, ignores SessionSelectorBorderRadius
+CircularSessionSelector=true
+SessionSelectorBorderRadius=10
+
+UseCustomSessionSelectorIcon=false
+SessionSelectorIcon=""
+
+SessionSelectorPopupColor={{surface0.hex}}
+// 28 = Spacing + SessionSelectorItemHeight / 2
+SessionSelectorPopupRadius=28
+
+SessionSelectorItemColor={{surface1.hex}}
+SessionSelectorItemColorHover={{surface2.hex}}
+SessionSelectorItemColorSelected={{flavor.colors[accent].hex}}
+
+SessionSelectorItemTextColor={{text.hex}}
+SessionSelectorItemTextColorHover={{text.hex}}
+SessionSelectorItemTextColorSelected={{base.hex}}
+
+SessionSelectorItemHeight=36
+SessionSelectorItemWidth=300
 
 ### Clock ###
 ClockEnabled=true
