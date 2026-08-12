@@ -163,6 +163,7 @@ Item {
           }
         }
         onClicked: {
+          passwordField.focus = false
           sddm.login(user, password, session)
           // For debugging
           // connections.onLoginFailed()
@@ -171,6 +172,7 @@ Item {
     }
   }
   DropShadow {
+    visible: config.LoginPanelShadow == "true"
     anchors.fill: loginBackground
     source: loginBackground
 

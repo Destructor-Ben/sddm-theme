@@ -1,12 +1,3 @@
----
-whiskers:
-  version: "^2.5.1"
-  matrix:
-    - flavor
-    - accent
-  hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Main.qml"
----
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
@@ -22,7 +13,7 @@ Item {
     height: parent.height
     width: parent.width
     z: 0
-    color: {{base.hex}}
+    color: config.BackgroundColor
   }
   Image {
     id: backgroundImage
@@ -60,13 +51,19 @@ Item {
         left: parent.left
       }
       PowerButton {
-        id: powerButton
-      }
-      RebootButton {
-        id: rebootButton
-      }
-      SleepButton {
         id: sleepButton
+        icon: config.UseCustomSleepIcon == "true" ? config.SleepIcon : "../assets/sleep.svg"
+        onAction: sddm.suspend()
+      }
+      PowerButton {
+        id: rebootButton
+        icon: config.UseCustomRebootIcon == "true" ? config.RebootIcon : "../assets/reboot.svg"
+        onAction: sddm.reboot()
+      }
+      PowerButton {
+        id: powerButton
+        icon: config.UseCustomPowerOffIcon == "true" ? config.PowerOffIcon : "../assets/power.svg"
+        onAction: sddm.powerOff()
       }
       z: 5
     }

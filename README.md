@@ -1,28 +1,30 @@
+<!--
+
 # TODO:
-- redo readme
+- redo readme instructions
+- redo previews
 - redo gh ci stuff
 
 - figure out how version will be specified
   - package needs version but i'd rather do it in a git tag
   - also package in the metadata file
 - redo folder structure
-  - regenerate previews
   - get back the default wallpaper
-  - make only the config files processsed by the preprocesser, and make changing the theme in the preprocessor just change the config file
-- explain the icons are papirus in the readme
 - add cursors to the clickable elements
+
+-->
 
 <h3 align="center">
  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
- Catppuccin for <a href="https://github.com/sddm/sddm/">SDDM</a>
+ Catppuccin Rounded for <a href="https://github.com/sddm/sddm/">SDDM</a>
  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 
 <p align="center">
-    <a href="https://github.com/catppuccin/sddm/stargazers"><img src="https://img.shields.io/github/stars/catppuccin/sddm?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
-    <a href="https://github.com/catppuccin/sddm/issues"><img src="https://img.shields.io/github/issues/catppuccin/sddm?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <a href="https://github.com/catppuccin/sddm/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/sddm?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
+    <a href="https://github.com/Destructor-Ben/sddm-theme/stargazers"><img src="https://img.shields.io/github/stars/Destructor-Ben/sddm-theme?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
+    <a href="https://github.com/Destructor-Ben/sddm-theme/issues"><img src="https://img.shields.io/github/issues/Destructor-Ben/sddm-theme?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+    <a href="https://github.com/Destructor-Ben/sddm-theme/contributors"><img src="https://img.shields.io/github/contributors/Destructor-Ben/sddm-theme?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -51,7 +53,7 @@
 ## Usage
 
 1. Ensure you have installed the [dependencies](#dependencies) for your operating system.
-2. Download your chosen flavour + accent zip file from the [latest GitHub release](https://github.com/catppuccin/sddm/releases/latest).
+2. Download your chosen flavour + accent zip file from the [latest GitHub release](https://github.com/Destructor-Ben/sddm-theme/releases/latest).
 3. Unzip the file and move the resulting directory to `/usr/share/sddm/themes/`. E.g. to copy `catppuccin-mocha-mauve`:
 
     ```bash
@@ -97,7 +99,10 @@ eopkg install qt6-quickcontrols2 qt6-svg
 
 ### NixOS
 
-This theme is available in nixpkgs [`catppuccin-sddm`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/ca/catppuccin-sddm/package.nix).
+This theme is available through this flake:
+```nix
+# TODO: flake example
+```
 
 Add the package to systemPackages, you can customize the theme by overriding the attributes:
 
@@ -130,13 +135,9 @@ displayManager.sddm = {
 
 ## Configuration
 
-- `Font`: The chosen font
-- `FontSize`: The text size
-- `ClockEnabled`: Whether the clock is on or off, this should be set to either `true` or `false`
-- `CustomBackground`: When this is `true` it will read from `Background` to render the custom background image, this should be set to either `true` or `false`
-- `Background`: This is the location of the background image, it is recomended to use the provided `backgrounds/` directory to store the images
-- `LoginBackground`: This is a extra background around the login panel, this should be set to either `true` or `false`
-- `UserIcon`: When this is set to `true` the user icon will be displayed, this should be set to either `true` or `false`
+Read through the <a href="templates/theme.tera">config file</a> to see the config options.
+
+The icons default to using power icons from Papirus.
 
 ## 💝 Thanks to
 
@@ -149,4 +150,5 @@ displayManager.sddm = {
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 <p align="center">Copyright &copy; 2021-present <a href="https://github.com/catppuccin" target="_blank">Catppuccin Org</a>
+<p align="center">Copyright &copy; 2026-present <a href="https://github.com/catppuccin" target="_blank">Destructor_Ben</a>
 <p align="center"><a href="https://github.com/catppuccin/catppuccin/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a></p>

@@ -1,12 +1,3 @@
----
-whiskers:
-  version: "^2.5.1"
-  matrix:
-    - flavor
-    - accent
-  hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Components/SessionPanel.qml"
----
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQml.Models 2.15

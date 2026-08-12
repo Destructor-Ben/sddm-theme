@@ -21,8 +21,9 @@ Padding=20
 TransitionDuration=150
 
 ### Background ###
-CustomBackground="false"
+CustomBackground=false
 Background="backgrounds/julia.png"
+BackgroundColor={{base.hex}}
 
 ### Login Panel ###
 LoginPanelColor={{mantle.hex}}
@@ -31,7 +32,7 @@ LoginPanelBorderRadius=20
 LoginPanelBorderWidth=4
 LoginPanelBorderColor={{surface0.hex}}
 
-UserIcon="true"
+UserIcon=true
 UserIconSize=192
 UserIconBorderColor={{surface1.hex}}
 # Set this to a file path to an image to set a custom default user icon
@@ -49,12 +50,13 @@ LoginButtonTextColor={{base.hex}}
 LoginButtonHoverTextColor={{base.hex}}
 LoginButtonPressedTextColor={{base.hex}}
 
-ShouldBlinkCursor="true"
+ShouldBlinkCursor=true
 # Measured in ms
 CursorBlinkDuration=1000
 TextSelectionColor={{overlay0.hex}}
 PlaceholderTextColor={{overlay1.hex}}
 
+LoginPanelShadow=true
 LoginPanelShadowColor="#88000000"
 LoginPanelShadowSamples=16
 LoginPanelShadowRadius=8
@@ -64,7 +66,7 @@ LoginPanelShadowYOffset=2
 LoginPanelFieldHeight=35
 LoginPanelFieldWidth=300
 
-EnableLoginFailedAnimation="true"
+EnableLoginFailedAnimation=true
 LoginFailedMessage="Incorrect Password"
 LoginFailedTextColor={{red.hex}}
 # Measured in ms, time between each keyframe of the shake animation (there are 10 keyframes)
@@ -78,32 +80,32 @@ IncorrectPasswordDelay=1000
 # for the number of milliseconds specified
 # PasswordShowLastLetter=1000
 
-### Power Buttons & Session Selector Button ###
-# TODO: split into Power and Session
-IconSize=48
+### Power Buttons ###
+PowerButtonIconSize=48
 PowerButtonColor={{red.hex}}
+PowerButtonHoverColor={{maroon.hex}}
 PowerButtonIconColor={{base.hex}}
-# TODO: border colors + width
-# TODO: all of the above for the session button
+PowerButtonHoverIconColor={{base.hex}}
 
-# TODO: split into Power and Session
-# If true, ignores PowerAndSessionButtonBorderRadius
-CircularPowerAndSessionButtons=true
-# TODO: comment saying set to half of XXIconSize to make it a circle
-PowerAndSessionButtonBorderRadius=20
-# TODO: options for the icons
-# TODO: orientation option
+# If true, ignores PowerButtonBorderRadius
+CircularPowerButtons=true
+PowerButtonBorderRadius=20
 
-# TODO options for power button & session selector locations
+UseCustomPowerOffIcon=false
+UseCustomRebootIcon=false
+UseCustomSleepIcon=false
 
-# TODO shadow options
+PowerOffIcon=""
+RebootIcon=""
+SleepIcon=""
 
 ### Session Selector ###
+SessionSelectorIconSize=48
 # TODO: option to show the Selector
 # TODO: more settings for color + border + size
 
 ### Clock ###
-ClockEnabled="true"
+ClockEnabled=true
 ClockFont="Noto Sans"
 ClockColor={{text.hex}}
 ClockDateSize=24
@@ -124,11 +126,11 @@ ClockHorizontalAnchor="center"
 ClockGap=-20
 # Whether to ignore ClockHorizontalAnchor and center text regardless
 # TODO: implement
-ClockAlwaysCenterText="false"
+ClockAlwaysCenterText=false
 # Whether the date and time text should have their places swapped
-ClockSwapDateAndTime="false"
+ClockSwapDateAndTime=false
 
-ClockShadow="true"
+ClockShadow=true
 # TODO: more shadow options
 
 ### Shadows ###
