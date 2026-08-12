@@ -16,13 +16,13 @@ FontSize=12
 # Spacing between power buttons, input fields & login button, and sessions
 Spacing=10
 # Padding around the edge of the screen
-Padding=20
+Padding=75
 # Measured in ms
 TransitionDuration=150
 
 ### Background ###
-CustomBackground=false
-Background="backgrounds/julia.png"
+CustomBackground=true
+Background="backgrounds/wall.png"
 BackgroundColor={{base.hex}}
 
 ### Login Panel ###
@@ -139,7 +139,7 @@ ClockTimeSize=72
 ClockDateFormat="dddd, d MMMM"
 ClockTimeFormat="h:mm AP"
 
-ClockTopMargin=50
+ClockTopMargin=0
 ClockBottomMargin=0
 ClockLeftMargin=0
 ClockRightMargin=0
@@ -148,22 +148,13 @@ ClockVerticalAnchor="top"
 # "left", "center", or "right"
 ClockHorizontalAnchor="center"
 # Gap between date and time
-# TODO: why negative?
-ClockGap=-20
-# Whether to ignore ClockHorizontalAnchor and center text regardless
-# TODO: implement
-ClockAlwaysCenterText=false
+ClockGap=20
 # Whether the date and time text should have their places swapped
 ClockSwapDateAndTime=false
 
 ClockShadow=true
-# TODO: more shadow options
-
-### Shadows ###
-# TODO: remove this section + move to others
-ShadowColor="#aa000000"
-ShadowSamples=17
-LargeShadowRadius=8
-LargeShadowOffset=2
-SmallShadowRadius=4
-SmallShadowOffset=2
+ClockShadowColor="#aa000000"
+ClockShadowSamples=16
+ClockShadowRadius=8
+ClockShadowXOffset=2
+ClockShadowYOffset=2

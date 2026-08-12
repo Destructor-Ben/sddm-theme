@@ -1,6 +1,10 @@
 <!--
 
 # TODO:
+- make the clock look like Pop2
+ - text stroke
+ - coloured gradient shadow
+
 - redo readme instructions
 - redo previews
 - redo gh ci stuff
@@ -8,7 +12,6 @@
 - figure out how version will be specified
   - package needs version but i'd rather do it in a git tag
   - also package in the metadata file
-- get back the default wallpaper
 
 -->
 

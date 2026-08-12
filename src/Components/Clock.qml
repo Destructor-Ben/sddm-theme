@@ -1,9 +1,6 @@
 import QtQuick 2.15
 import Qt5Compat.GraphicalEffects
 
-// TODO: make look like Pop2
-// - text stroke
-// - coloured shadow
 Item {
   id: time
   property date dateTime: new Date()
@@ -40,7 +37,7 @@ Item {
       top: config.ClockVerticalAnchor === "top" ? parent.top : undefined
 
       bottom: config.ClockVerticalAnchor === "bottom" ? timeText.top : (config.ClockVerticalAnchor === "center" ? parent.verticalCenter : undefined)
-      bottomMargin: config.ClockVerticalAnchor === "bottom" ? config.ClockGap : (config.ClockVerticalAnchor === "center" ? (config.ClockGap / 2) : undefined)
+      bottomMargin: config.ClockVerticalAnchor === "bottom" ? -config.ClockGap : (config.ClockVerticalAnchor === "center" ? (-config.ClockGap / 2) : undefined)
     }
 
     color: time.color
@@ -58,7 +55,7 @@ Item {
       horizontalCenter: config.ClockHorizontalAnchor === "center" ? parent.horizontalCenter : undefined
 
       top: config.ClockVerticalAnchor === "top" ? dateText.bottom : (config.ClockVerticalAnchor === "center" ? parent.verticalCenter : undefined)
-      topMargin: config.ClockVerticalAnchor === "top" ? config.ClockGap : (config.ClockVerticalAnchor === "center" ? (config.ClockGap / 2) : undefined)
+      topMargin: config.ClockVerticalAnchor === "top" ? -config.ClockGap : (config.ClockVerticalAnchor === "center" ? (-config.ClockGap / 2) : undefined)
 
       bottom: config.ClockVerticalAnchor === "bottom" ? parent.bottom : undefined
     }
@@ -74,12 +71,11 @@ Item {
     anchors.fill: dateText
     source: dateText
 
-    // TODO: clock shadow settings
-    horizontalOffset: config.LargeShadowOffset
-    verticalOffset: config.LargeShadowOffset
-    radius: config.LargeShadowRadius
-    samples: config.ShadowSamples
-    color: config.ShadowColor
+    horizontalOffset: config.ClockShadowXOffset
+    verticalOffset: config.ClockShadowYOffset
+    radius: config.ClockShadowRadius
+    samples: config.ClockShadowSamples
+    color: config.ClockShadowColor
   }
 
   DropShadow {
@@ -87,11 +83,10 @@ Item {
     anchors.fill: timeText
     source: timeText
 
-    // TODO: clock shadow settings
-    horizontalOffset: config.LargeShadowOffset
-    verticalOffset: config.LargeShadowOffset
-    radius: config.LargeShadowRadius
-    samples: config.ShadowSamples
-    color: config.ShadowColor
+    horizontalOffset: config.ClockShadowXOffset
+    verticalOffset: config.ClockShadowYOffset
+    radius: config.ClockShadowRadius
+    samples: config.ClockShadowSamples
+    color: config.ClockShadowColor
   }
 }
