@@ -1,4 +1,11 @@
-{ pkgs, lib, allThemes ? false, flavor ? "mocha", accent ? "mauve", config ? { } }:
+{
+  pkgs,
+  lib,
+  allThemes ? false,
+  flavor ? "mocha",
+  accent ? "mauve",
+  options ? { },
+}:
 pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "catppuccin-sddm-rounded";
   version = "0.1";
@@ -37,26 +44,29 @@ pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
     mkdir -p "$out/share/sddm/themes/"
     ${
       if allThemes then
-      ''
-        cp -r themes/ "$out/share/sddm/"
-        configFiles=$(find "$out/share/sddm/themes/" -name "theme.conf")
-      ''
+        ''
+          cp -r themes/ "$out/share/sddm/"
+          configFiles=$(find "$out/share/sddm/themes/" -name "theme.conf")
+        ''
       else
-      ''
-        cp -r themes/catppuccin-rounded-${flavor}-${accent} "$out/share/sddm/themes/catppuccin-rounded"
-        configFiles=$out/share/sddm/themes/catppuccin-rounded/theme.conf;
-      ''
+        ''
+          cp -r themes/catppuccin-rounded-${flavor}-${accent} "$out/share/sddm/themes/catppuccin-rounded"
+          configFiles=$out/share/sddm/themes/catppuccin-rounded/theme.conf;
+        ''
     }
 
     for configFile in $configFiles; do
       echo "Applying configuration to $configFile..."
 
-      ${lib.concatStringsSep "\n" (lib.mapAttrsToList (key: value: 
-        let
-          safeValue = if builtins.isBool value then lib.boolToString value else toString value;
-        in
-        ''sed -i "s|^[[:space:]]*${key}=.*|${key}=${safeValue}|" "$configFile"''
-      ) config)}
+      ${lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (
+          key: value:
+          let
+            safe-value = if builtins.isBool value then lib.boolToString value else toString value;
+          in
+          ''sed -i "s|^[[:space:]]*${key}=.*|${key}=${safe-value}|" "$configFile"''
+        ) options
+      )}
     done
 
     runHook postInstall

@@ -6,46 +6,61 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    { nixpkgs, flake-utils, ... }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
-        themePkg = pkgs.callPackage ./theme.nix { };
+        theme-package = pkgs.callPackage ./theme.nix { };
 
-        testScript = pkgs.writeShellScriptBin "test-theme" ''
-          export QML2_IMPORT_PATH="${with pkgs.kdePackages; pkgs.lib.makeSearchPath "lib/qt-6/qml" [
-            qt5compat
-            qtsvg
-            sddm
-          ]}"
+        test-script = pkgs.writeShellScriptBin "test-theme" ''
+          export QML2_IMPORT_PATH="${
+            with pkgs.kdePackages;
+            pkgs.lib.makeSearchPath "lib/qt-6/qml" [
+              qt5compat
+              qtsvg
+              sddm
+            ]
+          }"
 
           FLAVOR=''${1:-"mocha"}
           ACCENT=''${2:-"mauve"}
-          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override { allThemes = true; }}/share/sddm/themes/catppuccin-rounded-$FLAVOR-$ACCENT
+          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${
+            theme-package.override { allThemes = true; }
+          }/share/sddm/themes/catppuccin-rounded-$FLAVOR-$ACCENT
         '';
 
-        testPersonalScript = pkgs.writeShellScriptBin "test-personal-theme" ''
-          export QML2_IMPORT_PATH="${with pkgs.kdePackages; pkgs.lib.makeSearchPath "lib/qt-6/qml" [
-            qt5compat
-            qtsvg
-            sddm
-          ]}"
+        test-personal-script = pkgs.writeShellScriptBin "test-personal-theme" ''
+          export QML2_IMPORT_PATH="${
+            with pkgs.kdePackages;
+            pkgs.lib.makeSearchPath "lib/qt-6/qml" [
+              qt5compat
+              qtsvg
+              sddm
+            ]
+          }"
 
-          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${themePkg.override (import ./personal-theme.nix)}/share/sddm/themes/catppuccin-rounded
+          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${
+            theme-package.override (import ./personal-theme.nix)
+          }/share/sddm/themes/catppuccin-rounded
         '';
-      in {
+      in
+      {
         apps.default = {
           type = "app";
-          program = "${testScript}/bin/test-theme";
+          program = "${test-script}/bin/test-theme";
         };
 
         apps.test-personal = {
           type = "app";
-          program = "${testPersonalScript}/bin/test-personal-theme";
+          program = "${test-personal-script}/bin/test-personal-theme";
         };
 
-        packages.default = themePkg;
-        packages.personal = themePkg.override (import ./personal-theme.nix);
+        packages.default = theme-package;
+        packages.personal = theme-package.override (import ./personal-theme.nix);
+
+        formatter = pkgs.nixfmt-tree;
       }
     );
 }
