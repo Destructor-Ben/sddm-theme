@@ -10,6 +10,7 @@ whiskers:
 [General]
 
 ### General ###
+TextColor={{text.hex}}
 Font="Noto Sans"
 FontSize=12
 # Spacing between power buttons, input fields & login button, and sessions
@@ -36,11 +37,31 @@ UserIconBorderColor={{surface1.hex}}
 # Set this to a file path to an image to set a custom default user icon
 DefaultUserIcon=""
 
-# TODO: options for the buttons and input fields
+TextFieldColor={{surface0.hex}}
+TextFieldHoverColor={{surface1.hex}}
+TextFieldFocusedColor={{surface1.hex}}
+
+LoginButtonColor={{flavor.colors[accent].hex}}
+LoginButtonHoverColor={{rosewater.hex}}
+LoginButtonPressedColor={{rosewater.hex}}
+
+LoginButtonTextColor={{base.hex}}
+LoginButtonHoverTextColor={{base.hex}}
+LoginButtonPressedTextColor={{base.hex}}
+
+ShouldBlinkCursor="true"
+# Measured in ms
+CursorBlinkDuration=1000
+TextSelectionColor={{overlay0.hex}}
+PlaceholderTextColor={{overlay1.hex}}
+
+LoginPanelShadowColor="#88000000"
+LoginPanelShadowSamples=16
+LoginPanelShadowRadius=8
+LoginPanelShadowXOffset=2
+LoginPanelShadowYOffset=2
 
 # TODO: options for the login panel animation
-
-# TODO: shadow options
 
 # Uncomment this option to show the last letter of the password
 # for the number of milliseconds specified

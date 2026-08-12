@@ -1,18 +1,6 @@
----
-whiskers:
-  version: "^2.5.1"
-  matrix:
-    - flavor
-    - accent
-  hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Components/PasswordField.qml"
----
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import Qt5Compat.GraphicalEffects
 
-// TODO: border for this + user field, shadows too, and also fix the login button
-// TODO: see what failed login looks like
 TextField {
   id: passwordField
   focus: true
@@ -21,39 +9,31 @@ TextField {
   echoMode: TextInput.Password
   passwordCharacter: "•"
   passwordMaskDelay: config.PasswordShowLastLetter
-  selectionColor: {{overlay0.hex}}
+  selectionColor: config.TextSelectionColor
   renderType: Text.NativeRendering
   font {
     family: config.Font
     pointSize: config.FontSize
     bold: true
   }
-  color: {{text.hex}}
-  placeholderTextColor: {{overlay1.hex}}
+  color: config.TextColor
+  placeholderTextColor: config.PlaceholderTextColor
   horizontalAlignment: TextInput.AlignHCenter
+  leftPadding: height / 2
+  rightPadding: height / 2
+  cursorDelegate: Cursor { }
   background: Rectangle {
     id: passFieldBackground
     radius: height / 2
-    color: {{surface0.hex}}
+    color: config.TextFieldColor
   }
-  /* TODO: fix the shadow: DropShadow {
-    anchors.fill: passFieldBackground
-    source: passFieldBackground
-
-    horizontalOffset: config.SmallShadowOffset
-    verticalOffset: config.SmallShadowOffset
-    radius: config.SmallShadowRadius
-    samples: config.ShadowSamples
-    color: config.ShadowColor
-  }*/
-  containmentMask: passFieldBackground // TODO: doesn't work
   states: [
     State {
       name: "focused"
       when: passwordField.activeFocus
       PropertyChanges {
         target: passFieldBackground
-        color: {{surface1.hex}}
+        color: config.TextFieldFocusedColor
       }
     },
     State {
@@ -61,7 +41,7 @@ TextField {
       when: passwordField.hovered
       PropertyChanges {
         target: passFieldBackground
-        color: {{surface1.hex}}
+        color: config.TextFieldHoverColor
       }
     }
   ]

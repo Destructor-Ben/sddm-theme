@@ -1,12 +1,3 @@
----
-whiskers:
-  version: "^2.5.1"
-  matrix:
-    - flavor
-    - accent
-  hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Components/LoginPanel.qml"
----
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
@@ -121,12 +112,12 @@ Item {
           }
           horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
-          color: {{base.hex}}
+          color: config.LoginButtonTextColor
           text: "Login"
         }
         background: Rectangle {
           id: buttonBackground
-          color: {{flavor.colors[accent].hex}}
+          color: config.LoginButtonColor
           radius: height / 2
         }
         states: [
@@ -135,11 +126,11 @@ Item {
             when: loginButton.down
             PropertyChanges {
               target: buttonBackground
-              // TODO: proper color
-              color: {{flavor.colors[accent].hex}}
+              color: config.LoginButtonPressedColor
             }
             PropertyChanges {
               target: buttonText
+              color: config.LoginButtonPressedTextColor
             }
           },
           State {
@@ -147,11 +138,11 @@ Item {
             when: loginButton.hovered
             PropertyChanges {
               target: buttonBackground
-              // TODO: TODO: proper color
-              color: {{flavor.colors[accent].hex}}
+              color: config.LoginButtonHoverColor
             }
             PropertyChanges {
               target: buttonText
+              color: config.LoginButtonHoverTextColor
             }
           },
           State {
@@ -181,16 +172,16 @@ Item {
     anchors.fill: loginBackground
     source: loginBackground
 
-    horizontalOffset: config.LargeShadowOffset
-    verticalOffset: config.LargeShadowOffset
-    radius: config.LargeShadowRadius
-    samples: config.ShadowSamples
-    color: config.ShadowColor
+    color: config.LoginPanelShadowColor
+    samples: config.LoginPanelShadowSamples
+    radius: config.LoginPanelShadowRadius
+    horizontalOffset: config.LoginPanelShadowXOffset
+    verticalOffset: config.LoginPanelShadowYOffset
   }
   Connections {
     target: sddm
 
-    // TODO: shake the login panel if login fails
+    // TODO: shake the login panel if login fails, perhaps change password field hint text
     function onLoginFailed() {
       passwordField.text = ""
       passwordField.focus = true

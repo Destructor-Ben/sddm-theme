@@ -1,35 +1,29 @@
----
-whiskers:
-  version: "^2.5.1"
-  matrix:
-    - flavor
-    - accent
-  hex_format: "\"#{{R}}{{G}}{{B}}{{Z}}\""
-  filename: "./themes/catppuccin-rounded-{{flavor.identifier}}-{{accent}}/Components/UserField.qml"
----
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 TextField {
   id: userField
+  text: userModel.lastUser
   selectByMouse: true
+  placeholderText: "Username"
   echoMode: TextInput.Normal
-  selectionColor: {{overlay0.hex}}
+  selectionColor: config.TextSelectionColor
   renderType: Text.NativeRendering
   font {
     family: config.Font
     pointSize: config.FontSize
     bold: true
   }
-  color: {{text.hex}}
-  placeholderTextColor: {{overlay1.hex}}
-  horizontalAlignment: Text.AlignHCenter
-  placeholderText: "Username"
-  text: userModel.lastUser
+  color: config.TextColor
+  placeholderTextColor: config.PlaceholderTextColor
+  horizontalAlignment: TextInput.AlignHCenter
+  leftPadding: height / 2
+  rightPadding: height / 2
+  cursorDelegate: Cursor { }
   background: Rectangle {
     id: userFieldBackground
-    color: {{surface0.hex}}
     radius: height / 2
+    color: config.TextFieldColor
   }
   states: [
     State {
@@ -37,7 +31,7 @@ TextField {
       when: userField.activeFocus
       PropertyChanges {
         target: userFieldBackground
-        color: {{surface1.hex}}
+        color: config.TextFieldFocusedColor
       }
     },
     State {
@@ -45,7 +39,7 @@ TextField {
       when: userField.hovered
       PropertyChanges {
         target: userFieldBackground
-        color: {{surface1.hex}}
+        color: config.TextFieldHoverColor
       }
     }
   ]
