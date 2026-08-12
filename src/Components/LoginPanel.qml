@@ -8,8 +8,8 @@ Item {
   property var user: userField.text
   property var password: passwordField.text
   property var session: sessionPanel.session
-  property var inputHeight: 35
-  property var inputWidth: 300
+  property var inputHeight: config.LoginPanelFieldHeight
+  property var inputWidth: config.LoginPanelFieldWidth
 
   Rectangle {
     id: loginBackground
@@ -164,6 +164,8 @@ Item {
         }
         onClicked: {
           sddm.login(user, password, session)
+          // For debugging
+          // connections.onLoginFailed()
         }
       }
     }
@@ -178,13 +180,48 @@ Item {
     horizontalOffset: config.LoginPanelShadowXOffset
     verticalOffset: config.LoginPanelShadowYOffset
   }
+
+  SequentialAnimation {
+    id: loginFailedAnimation
+    running: false
+
+    ScriptAction {
+      script: {
+        passwordField.placeholderText = config.LoginFailedMessage
+        passwordField.placeholderTextColor = config.LoginFailedTextColor
+      }
+    }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * 0; to: -1 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * -1; to: 2 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * 2; to: -4 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * -4; to: 4 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * 4; to: -4 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * -4; to: 4 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * 4; to: -4 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * -4; to: 2 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * 2; to: -1 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    NumberAnimation { from: config.LoginFailedAnimAmplitude * -1; to: 0 * config.LoginFailedAnimAmplitude; target: loginBackground; property: "anchors.horizontalCenterOffset"; easing.type: Easing.InOutQuad; duration: config.LoginFailedAnimSpeed }
+    PauseAnimation { duration: config.IncorrectPasswordDelay }
+    ScriptAction {
+      script: {
+        passwordField.placeholderText = "Password"
+        passwordField.placeholderTextColor = config.PlaceholderTextColor
+        passwordField.focus = true
+      }
+    }
+  }
+
   Connections {
+    id: connections
     target: sddm
 
-    // TODO: shake the login panel if login fails, perhaps change password field hint text
     function onLoginFailed() {
       passwordField.text = ""
-      passwordField.focus = true
+      passwordField.focus = false
+
+      if (!loginFailedAnimation.running && config.EnableLoginFailedAnimation == "true") {
+        loginFailedAnimation.start()
+      }
     }
   }
 }

@@ -17,9 +17,9 @@ Rectangle {
       loops: Animation.Infinite
       running: parent.cursorVisible && config.ShouldBlinkCursor == "true"
 
-      PropertyAnimation { duration: config.CursorBlinkDuration / 2 }
+      PauseAnimation { duration: config.CursorBlinkDuration / 2 }
       ScriptAction { script: cursorRect.opacity = 0.0 }
-      PropertyAnimation { duration: config.CursorBlinkDuration / 2 }
+      PauseAnimation { duration: config.CursorBlinkDuration / 2 }
       ScriptAction { script: cursorRect.opacity = 1.0 }
   }
 }

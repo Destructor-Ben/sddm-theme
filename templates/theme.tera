@@ -61,7 +61,18 @@ LoginPanelShadowRadius=8
 LoginPanelShadowXOffset=2
 LoginPanelShadowYOffset=2
 
-# TODO: options for the login panel animation
+LoginPanelFieldHeight=35
+LoginPanelFieldWidth=300
+
+EnableLoginFailedAnimation="true"
+LoginFailedMessage="Incorrect Password"
+LoginFailedTextColor={{red.hex}}
+# Measured in ms, time between each keyframe of the shake animation (there are 10 keyframes)
+LoginFailedAnimSpeed=100
+# Multiplier for the animation amplitude
+LoginFailedAnimAmplitude=3
+# Measured in ms
+IncorrectPasswordDelay=1000
 
 # Uncomment this option to show the last letter of the password
 # for the number of milliseconds specified
