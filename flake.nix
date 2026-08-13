@@ -24,6 +24,9 @@
             ]
           }"
 
+          # Fixes wrong bit depth being used
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION=0
+
           FLAVOR=''${1:-"mocha"}
           ACCENT=''${2:-"mauve"}
           ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${
@@ -40,6 +43,9 @@
               sddm
             ]
           }"
+
+          # Fixes wrong bit depth being used
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION=0
 
           ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${
             theme-package.override (import ./personal-theme.nix)
