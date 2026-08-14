@@ -28,7 +28,7 @@ BackgroundColor={{base.hex}}
 ### Login Panel ###
 LoginPanelColor={{mantle.hex}}
 LoginPanelPadding=20
-// 38 = LoginPanelPadding + LoginPanelFieldHeight / 2
+# 38 = LoginPanelPadding + LoginPanelFieldHeight / 2
 LoginPanelBorderRadius=38
 LoginPanelBorderWidth=4
 LoginPanelBorderColor={{surface0.hex}}
@@ -116,7 +116,7 @@ UseCustomSessionSelectorIcon=false
 SessionSelectorIcon=""
 
 SessionSelectorPopupColor={{surface0.hex}}
-// 28 = Spacing + SessionSelectorItemHeight / 2
+# 28 = Spacing + SessionSelectorItemHeight / 2
 SessionSelectorPopupRadius=28
 
 SessionSelectorItemColor={{surface1.hex}}
