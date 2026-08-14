@@ -4,7 +4,7 @@
 
   options = rec {
     CustomBackground = true;
-    Background="backgrounds/julia.png";
+    Background = "backgrounds/julia.png";
 
     Font = "JetBrainsMono Nerd Font Propo";
     ClockFont = "Red Seven";

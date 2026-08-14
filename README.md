@@ -5,8 +5,6 @@
  - text stroke
  - coloured gradient shadow
 
-- redo readme instructions
-
 -->
 
 <h3 align="center">
@@ -53,19 +51,19 @@
 
 1. Ensure you have installed the [dependencies](#dependencies) for your operating system.
 2. Download your chosen flavour + accent zip file from the [latest GitHub release](https://github.com/Destructor-Ben/sddm-theme/releases/latest).
-3. Unzip the file and move the resulting directory to `/usr/share/sddm/themes/`. E.g. to copy `catppuccin-mocha-mauve`:
+3. Unzip the file and move the resulting directory to `/usr/share/sddm/themes/`. E.g. to copy `catppuccin-rounded-mocha-mauve`:
 
     ```bash
-    sudo mv -v catppuccin-mocha-mauve /usr/share/sddm/themes
+    sudo mv -v catppuccin-rounded-mocha-mauve /usr/share/sddm/themes
     ```
 
-4. Edit the `/etc/sddm.conf` file and change the theme to `catppuccin-<flavour>-<accent>`. For example, `catppuccin-mocha-mauve`.
+4. Edit the `/etc/sddm.conf` file and change the theme to `catppuccin-rounded-<flavour>-<accent>`. For example, `catppuccin-rounded-mocha-mauve`.
 
    If you don't have this file, create the `/etc/sddm.conf` file and add the following lines:
 
    ```conf
    [Theme]
-   Current=catppuccin-mocha-mauve
+   Current=catppuccin-rounded-mocha-mauve
    ```
 
 5. Unfortunately, the theme does not work properly if SDDM is run on X11 and not Wayland - follow the instructions [here](https://wiki.archlinux.org/title/SDDM#Wayland) here if there are issues. 
@@ -98,45 +96,92 @@ eopkg install qt6-quickcontrols2 qt6-svg
 
 ### NixOS
 
-This theme is available through this flake:
+This theme can be used with a flake, requiring the flake outputs to be passed via `specialArgs` so config modules can access it. An example flake is shown below.
+
 ```nix
-# TODO: flake example
+{
+  description = "Example NixOS SDDM Flake";
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    sddm-theme = {
+      url = "github:Destructor-Ben/sddm-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { nixpkgs, sddm-theme, ... }:
+  let
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+    };
+
+    specialArgs = {
+      inherit sddm-theme;
+    };
+  in
+  {
+    nixosConfigurations = {
+      my-computer = nixpkgs.lib.nixosSystem {
+        inherit system;
+        inherit specialArgs;
+        modules = [
+          # Your config modules here...
+        ];
+      };
+    };
+  };
+}
 ```
 
-Add the package to systemPackages, you can customize the theme by overriding the attributes:
+Add the package to `systemPackages` and customize the theme by overriding the args for the package, then set it as the theme in the SDDM configuration.
+
+Note that Nix handles the theme names slightly differently than other distros so you don't have to specify a suffix for the theme name.
 
 ```nix
-environment.systemPackages = [(
-  pkgs.catppuccin-sddm.override {
-    flavor = "mocha";
-    accent = "mauve";
-    # allThemes = true; # Instead of specifying a single theme, you can install all themes
-    # The theme name used when installing just one theme is "catppuccin-rounded", whilst with all of them, it is "catppuccin-rounded-{flavor}-{accent}"
-    # TODO: add config options here once ready for real
-    font  = "Noto Sans";
-    fontSize = "9";
-    background = "${./wallpaper.png}";
-    loginBackground = true;
-  }
-)];
-```
+{ pkgs, sddm-theme, ... }:
+{
+  environment.systemPackages = [
+    sddm-theme.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      flavor = "mocha"; # Your preferred flavor
+      accent = "mauve"; # Your preferred accent
 
-Then set it as the theme in the sddm configuration, change the suffix to the flavor and accent you set in the package override:
+      # Read the configuration section below to see all of the config options
+      # The options specified here should be use the same name used in theme.conf
+      # Some example config values are shown below
+      options = {
+        CustomBackground = true;
+        Background = "/home/ben/Pictures/Wallpapers/Galaxy.png";
 
-TODO: show how it is supposed to be done
-```nix
-displayManager.sddm = {
-  enable = true;
-  theme = "catppuccin-mocha-mauve";
-  package = pkgs.kdePackages.sddm;
-};
+        Font = "JetBrainsMono Nerd Font Propo";
+        ClockFont = "Red Seven";
+        Padding = 20;
+        LoginButtonHoverColor = "#f5c2e7";
+      };
+    }
+
+    # If you want to use my personal theme, use:
+    # sddm-theme.packages.${pkgs.stdenv.hostPlatform.system}.personal
+    # Ensure you have JetBrains Mono Nerd Font and the Red Seven font installed too
+  ];
+
+  services.displayManager.sddm = {
+    enable = true;;
+    theme = "catppuccin-rounded";
+
+    # Other SDDM config options...
+  };
+}
 ```
 
 ## Configuration
 
 Read through the <a href="templates/theme.tera">config file</a> to see the config options.
 
-The icons default to using power icons from Papirus.
+The icons default to using power icons and a settings icon from Papirus, which are packaged with the theme.
 
 ## 💝 Thanks to
 
