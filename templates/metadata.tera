@@ -10,7 +10,7 @@ whiskers:
 Name=Catppuccin Rounded ({{flavor.name}} {{accent}})
 Description=Soothing & soft-edged pastel theme for SDDM
 Type=sddm-theme
-Version=0.1
+Version=1.0.0
 Website=https://github.com/destructor-ben/sddm-theme
 Screenshot=preview.png
 MainScript=Main.qml

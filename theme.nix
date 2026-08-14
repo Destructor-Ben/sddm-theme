@@ -8,7 +8,7 @@
 }:
 pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "catppuccin-sddm-rounded";
-  version = "0.1";
+  version = "1.0.0";
 
   src = ./.;
 

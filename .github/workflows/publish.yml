@@ -1,0 +1,23 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: extractions/setup-just@v3
+      - uses: catppuccin/setup-whiskers@v2
+
+      - name: Build
+        run: just zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          body_path: CHANGELOG.md
+          files: zips/*
