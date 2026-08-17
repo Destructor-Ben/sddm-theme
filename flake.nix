@@ -47,9 +47,7 @@
           # Fixes wrong bit depth being used
           export QT_WAYLAND_DISABLE_WINDOWDECORATION=0
 
-          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${
-            theme-package.override (import ./personal-theme.nix)
-          }/share/sddm/themes/catppuccin-rounded
+          ${pkgs.kdePackages.sddm}/bin/sddm-greeter-qt6 --test-mode --theme ${theme-package.override (import ./personal-theme.nix)}/share/sddm/themes/catppuccin-rounded
         '';
       in
       {
